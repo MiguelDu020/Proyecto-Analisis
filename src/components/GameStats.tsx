@@ -2,17 +2,17 @@
  * Componente para mostrar estadísticas del juego
  */
 
-import { Move, GameState } from '../types';
+import { Move } from '../types';
 
 interface GameStatsProps {
   moves: Move[];
-  gameState: GameState;
+  gameState: string;
   turn: number;
   policeCount: number;
   thiefCount: number;
 }
 
-export function GameStats({ moves, gameState, turn, policeCount, thiefCount }: GameStatsProps) {
+export function GameStats({ moves, turn, policeCount, thiefCount }: GameStatsProps) {
   const totalMoves = moves.length;
   const policeMoves = moves.filter(m => m.pieceId.startsWith('police')).length;
   const thiefMoves = moves.filter(m => m.pieceId.startsWith('thief')).length;

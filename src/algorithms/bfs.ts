@@ -3,7 +3,7 @@
  */
 
 import { Position, BoardSize } from '../types';
-import { isValidPosition, getDiagonalMoves } from '../utils/boardUtils';
+import { getDiagonalMoves } from '../utils/boardUtils';
 
 export type PathNode = {
   position: Position;

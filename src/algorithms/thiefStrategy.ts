@@ -3,9 +3,7 @@
  */
 
 import { Position, BoardSize, GamePiece, ThiefMode } from '../types';
-import { getDiagonalMoves, hasThiefReachedBottom, manhattanDistance } from '../utils/boardUtils';
-import { thiefHeuristic } from './heuristics';
-import { bfsShortestPath } from './bfs';
+import { getDiagonalMoves, hasThiefReachedBottom } from '../utils/boardUtils';
 
 /**
  * Calcula el mejor movimiento para el ladrón según el modo
@@ -65,51 +63,6 @@ function randomThiefMove(
   return shuffled[randomIndex];
 }
 
-/**
- * Movimiento inteligente del ladrón (maximiza heurística)
- * Complejidad: O(M * H) donde M es el número de movimientos (máximo 4) y H es la complejidad de la heurística
- */
-function intelligentThiefMove(
-  thief: GamePiece,
-  police: GamePiece[],
-  boardSize: BoardSize
-): Position | null {
-  const moves = getDiagonalMoves(thief.position, boardSize, false);
-  const policePositions = new Set(
-    police.map((p) => `${p.position.row},${p.position.col}`)
-  );
-
-  // Filtrar movimientos válidos
-  const validMoves = moves.filter((move) => {
-    const key = `${move.row},${move.col}`;
-    return !policePositions.has(key);
-  });
-
-  if (validMoves.length === 0) return null;
-
-  // Si el ladrón puede llegar al borde inferior, hacerlo
-  for (const move of validMoves) {
-    if (hasThiefReachedBottom(move, boardSize)) {
-      return move;
-    }
-  }
-
-  // Evaluar cada movimiento con la heurística
-  let bestMove: Position | null = null;
-  let bestScore = -Infinity;
-
-  for (const move of validMoves) {
-    const tempThief: GamePiece = { ...thief, position: move };
-    const score = thiefHeuristic(tempThief, police, boardSize);
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMove = move;
-    }
-  }
-
-  return bestMove;
-}
 
 /**
  * Estrategia de escape: intenta maximizar la distancia a los policías
@@ -141,7 +94,6 @@ export function escapeStrategy(
 
   // Calcular distancia mínima a policías para cada movimiento usando Manhattan
   let bestMove: Position | null = null;
-  let maxMinDistance = -1;
   let bestScore = -Infinity;
 
   for (const move of validMoves) {
@@ -162,7 +114,6 @@ export function escapeStrategy(
 
     if (score > bestScore) {
       bestScore = score;
-      maxMinDistance = minDist;
       bestMove = move;
     }
   }

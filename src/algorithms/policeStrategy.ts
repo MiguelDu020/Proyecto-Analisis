@@ -4,9 +4,8 @@
  */
 
 import { Position, BoardSize, GamePiece } from '../types';
-import { getDiagonalMoves, canCapture, manhattanDistance } from '../utils/boardUtils';
-import { bfsShortestPath } from './bfs';
-import { policeHeuristic, minPoliceDistance } from './heuristics';
+import { getDiagonalMoves, manhattanDistance, canCapture } from '../utils/boardUtils';
+import { policeHeuristic } from './heuristics';
 
 export type PoliceMove = {
   policeId: string;

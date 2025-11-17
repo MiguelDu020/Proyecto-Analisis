@@ -2,8 +2,8 @@
  * Heurísticas para evaluar posiciones y movimientos
  */
 
-import { Position, BoardSize, GamePiece } from '../types';
-import { manhattanDistance, euclideanDistance, bfsDistance } from './bfs';
+import { BoardSize, GamePiece } from '../types';
+import { bfsDistance } from './bfs';
 import { getDiagonalMoves } from '../utils/boardUtils';
 
 /**
