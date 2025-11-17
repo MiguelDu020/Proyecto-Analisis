@@ -256,5 +256,3 @@ Proyecto-Analisis/
 3. **Usa las casillas verdes**: En modo manual, las casillas verdes te muestran exactamente dónde puedes mover
 4. **Revisa la bitácora**: La bitácora te ayuda a entender la secuencia de movimientos
 5. **Experimenta**: Prueba diferentes configuraciones para ver cómo afectan el juego
-
-**¡Disfruta del juego!** 🎮
