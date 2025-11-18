@@ -1,7 +1,5 @@
 # 🎮 Policías y Ladrón - Proyecto de Análisis de Algoritmos
 
-**Proyecto Análisis de Algoritmos 2025-2**  
-**Fecha de Entrega y Sustentación: Jueves 13 de Noviembre**
 
 ## Descripción General
 
